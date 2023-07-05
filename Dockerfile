@@ -2,6 +2,7 @@
 FROM golang:1.20-alpine
 WORKDIR /src
 COPY . .
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN go mod download
 RUN go build -o /bin/client ./cmd/client
 RUN go build -o /bin/server ./cmd/server

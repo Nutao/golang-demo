@@ -1,0 +1,12 @@
+# syntax=docker/dockerfile:1
+FROM golang:1.20-alpine  
+WORKDIR /src            
+COPY . .                
+RUN go env -w GOPROXY=https://goproxy.cn,direct  
+RUN go mod download    
+RUN go build -o /bin/client ./cmd/client   
+RUN go build -o /bin/server ./cmd/server    
+
+FROM scratch
+COPY --from=0 /bin/client /bin/server /bin/
+ENTRYPOINT [ "/bin/server" ]     
