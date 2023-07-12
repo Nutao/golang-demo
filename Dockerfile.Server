@@ -1,0 +1,4 @@
+FROM scratch
+
+COPy  ./bin/server /bin/
+ENTRYPOINT [ "/bin/server" ]

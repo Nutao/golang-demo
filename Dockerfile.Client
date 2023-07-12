@@ -1,0 +1,4 @@
+FROM scratch
+
+COPY ./bin/client /bin/
+ENTRYPOINT [ "/bin/client" ]
